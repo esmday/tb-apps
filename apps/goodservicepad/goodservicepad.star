@@ -235,9 +235,12 @@ def main(config):
                                 diameter = 11
                             ),
                             # Text centered on top
-                            render.Text(
-                                content = "H",
-                                color = text_color
+                            render.Padding(
+                                pad = (5,0,0,0),
+                                child = render.Text(
+                                    content = "H",
+                                    color = text_color
+                                )
                             )
                         ]
                     )
