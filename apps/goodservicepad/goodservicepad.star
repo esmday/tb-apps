@@ -233,12 +233,13 @@ def main(config):
                             # Background circle
                             render.Circle(
                                 color = route_color,
-                                diameter = 11
+                                diameter = 12
                             ),
                             # Text centered on top
                             render.Padding(
-                                pad = (3,2,0,0),
+                                pad = (4,2,0,0),
                                 child = render.Text(
+                                    font = 
                                     content = content,
                                     color = text_color
                                 )
