@@ -352,21 +352,21 @@ def render_arrivals_frame(arrivals):
                 pad = (1, 0, 1, 0),
                 child = render.Row(
                     expanded = True,
-                    main_align = "space_between",
+                    #main_align = "space_between",
                     children = [
                         render.WrappedText(
                             content = arrival[0],
                             color = ORANGE,
                             font = FONT,
                             width = 44,
-                            height = 6,
+                            height = 8,
                         ),
                         render.WrappedText(
                             content = arrival[1],
                             color = ORANGE,
                             font = FONT,
                             width = 17,
-                            height = 6,
+                            height = 8,
                             align = "right",
                         ),
                     ],
