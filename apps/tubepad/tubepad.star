@@ -78,6 +78,7 @@ LINES = {
         "display": "Northern",
         "colour": BLACK,
         "textColour": WHITE,
+		"divColour": "#333",
     },
     "piccadilly": {
         "display": "Piccadilly",
@@ -332,6 +333,10 @@ def get_arrivals(stop_id, line_id, config):
 def colour(line_id):
     return LINES[line_id]["colour"]
 
+# The divider should use the same colour as the line except for Northern which is black.
+def div_colour(line_id):
+    return LINES[line_id].get("divColour",colour(line_id))
+
 # Make sure text is readable.
 def textColour(line_id):
     return LINES[line_id]["textColour"]
@@ -416,35 +421,24 @@ def main(config):
             children = [
                 render.Box(
                     width = 64,
-                    height = 13,
+                    height = 8,
                     # Include line colour because you might want to monitor
                     # different lines at a given station.
                     color = colour(line_id),
                     child = render.Padding(
                         # Better wrapping for King's Cross St Pancras
-                        pad = (1, 1, 1, 0),
-                        child = render.Column(
-                            children = [
-                                render.Marquee(
-                                    width = 62,
-                                    align = "center",
-                                    child = render.Text(
-                                        content = station_name,
-                                        color = textColour(line_id),
-                                    ),
-                                ),
-                                render.WrappedText(
-                                    content = LINES[line_id]["display"],
-                                    color = textColour(line_id),
-                                    align = "center",
-                                    width = 62,
-                                    height = 8,
-                                ),
-                            ],
-                        ),
+                        pad = (1, 0, 1, 0),
+                        child = render.Marquee(
+							width = 62,
+							align = "center",
+							child = render.Text(
+								content = station_name,
+								color = textColour(line_id),
+							),
+						),
                     ),
                 ),
-                render.Box(height = 1, width = 1),  # Spacing between box and text
+                render.Box(height = 1, width = 64, color = div_colour(line_id)),  # Spacing between box and text
                 render_arrivals(arrivals),
             ],
         ),
