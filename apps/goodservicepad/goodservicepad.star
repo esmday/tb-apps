@@ -227,6 +227,7 @@ def main(config):
                             # ),
                         # ),
                     # )
+                    content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI"
                     bullet = render.Stack(
                         children = [
                             # Background circle
@@ -236,9 +237,9 @@ def main(config):
                             ),
                             # Text centered on top
                             render.Padding(
-                                pad = (5,0,0,0),
+                                pad = (3,2,0,0),
                                 child = render.Text(
-                                    content = "H",
+                                    content = content,
                                     color = text_color
                                 )
                             )
