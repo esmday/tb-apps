@@ -20,7 +20,7 @@ HOLBORN_ID = "940GZZLUHBN"
 WHITE = "#FFF"
 BLACK = "#000"
 ORANGE = "#FFA500"
-FONT = "tom-thumb"
+FONT = "tb-8"
 
 MODES = ["tube", "elizabeth-line", "dlr", "overground", "tram"]
 LINES = {
