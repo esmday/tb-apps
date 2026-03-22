@@ -362,7 +362,7 @@ def render_arrivals_frame(arrivals):
                             height = 6,
                         ),
                         render.WrappedText(
-                            content = arrival[1],
+                            content = arrival[1].replace(',','.'),
                             color = ORANGE,
                             font = FONT,
                             width = 17,
