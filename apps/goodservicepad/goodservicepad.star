@@ -63,6 +63,12 @@ DIAMONDS = {
     "#ff6319": DIAMOND_ORANGE_ASSET.readall(),
 }
 
+ROUTE_OFFSETS = {
+    # Left, top, right, bottom
+    "1": (4, 2, 0, 0)
+    "2": (3, 2, 0, 0)
+}
+
 def main(config):
     routes_req = http.get(SUBWAY_NOW_ROUTES_URL)
     if routes_req.status_code != 200:
@@ -212,37 +218,40 @@ def main(config):
                         ],
                     )
                 else:
-                    # bullet = render.Circle(
-                        # color = route_color,
-                        # diameter = 11,
-                        # child = render.Box(
-                            # padding = 0,
-                            # height = 11,
-                            # width = 11,
-                            # child = render.Text(
-								# padding = 0,
-                                # content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
-                                # color = text_color,
-                                # height = 8,
-                            # ),
-                        # ),
-                    # )
                     content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI"
-                    bullet = render.Stack(
-                        children = [
-                            render.Circle(
-                                color = route_color,
-                                diameter = 12
-                            ),
-                            render.Padding(
-                                pad = (4, 2, 0, 0),
-                                child = render.Text(
-                                    content = content,
-                                    color = text_color
+                    
+                    if content in ROUTE_OFFSETS:
+                        bullet = render.Stack(
+                            children = [
+                                render.Circle(
+                                    color = route_color,
+                                    diameter = 11
+                                ),
+                                render.Padding(
+                                    pad = ROUTE_OFFSETS[content],
+                                    child = render.Text(
+                                        content = content,
+                                        color = text_color
+                                    )
                                 )
-                            )
-                        ]
-                    )
+                            ]
+                        )
+                    else:
+                        bullet = render.Circle(
+                            color = route_color,
+                            diameter = 11,
+                            child = render.Box(
+                                padding = 0,
+                                height = 11,
+                                width = 11,
+                                child = render.Text(
+                                    padding = 0,
+                                    content = content,
+                                    color = text_color,
+                                    height = 8,
+                                ),
+                            ),
+                        )
                 blocks.append(render.Padding(
                     pad = (0, 0, 0, 1),
                     child = render.Row(
