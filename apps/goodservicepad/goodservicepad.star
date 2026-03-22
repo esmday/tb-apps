@@ -222,7 +222,7 @@ def main(config):
                             child = render.Text(
                                 content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
                                 color = text_color,
-                                height = 9,
+                                height = 7,
                             ),
                         ),
                     )
