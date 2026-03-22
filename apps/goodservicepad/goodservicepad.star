@@ -217,8 +217,8 @@ def main(config):
                         diameter = 20,
                         child = render.Box(
                             padding = 0,
-                            height = 11,
-                            width = 11,
+                            height = 20,
+                            width = 20,
                             child = render.Text(
 								offset = 4,
                                 content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
