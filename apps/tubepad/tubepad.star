@@ -416,13 +416,13 @@ def main(config):
             children = [
                 render.Box(
                     width = 64,
-                    height = 11,
+                    height = 8,
                     # Include line colour because you might want to monitor
                     # different lines at a given station.
                     color = colour(line_id),
                     child = render.Padding(
                         # Better wrapping for King's Cross St Pancras
-                        pad = (1, 1, 1, 0),
+                        # pad = (1, 1, 1, 0),
                         child = render.Marquee(
 							width = 62,
 							align = "center",
