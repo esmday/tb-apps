@@ -216,13 +216,13 @@ def main(config):
                         color = route_color,
                         diameter = 11,
                         child = render.Box(
-                            padding = 2,
+                            padding = 0,
                             height = 11,
                             width = 11,
                             child = render.Text(
                                 content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
                                 color = text_color,
-                                height = 7,
+                                height = 8,
                             ),
                         ),
                     )
