@@ -438,7 +438,7 @@ def main(config):
 						),
                     ),
                 ),
-                render.Box(height = 1, width = 64, color = div_colour(line_id))  # Spacing between box and text
+                render.Box(height = 1, width = 64, color = div_colour(line_id)),  # Spacing between box and text
                 render_arrivals(arrivals),
             ],
         ),
