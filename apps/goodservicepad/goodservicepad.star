@@ -65,7 +65,7 @@ DIAMONDS = {
 
 ROUTE_OFFSETS = {
     # Left, top, right, bottom
-    "1": (3, 2, 0, 0),
+    #"1": (3, 2, 0, 0),
 }
 
 def main(config):
@@ -224,7 +224,7 @@ def main(config):
                             children = [
                                 render.Circle(
                                     color = route_color,
-                                    diameter = 11
+                                    diameter = 10
                                 ),
                                 render.Padding(
                                     pad = ROUTE_OFFSETS[content],
