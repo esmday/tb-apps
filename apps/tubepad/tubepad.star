@@ -78,7 +78,7 @@ LINES = {
         "display": "Northern",
         "colour": BLACK,
         "textColour": WHITE,
-		"divColour": WHITE,
+		"divColour": "#333",
     },
     "piccadilly": {
         "display": "Piccadilly",
@@ -333,9 +333,9 @@ def get_arrivals(stop_id, line_id, config):
 def colour(line_id):
     return LINES[line_id]["colour"]
 
-# The colour associated with each line is famous.
+# The divider should use the same colour as the line except for Northern which is black.
 def div_colour(line_id):
-    return LINES[line_id].get("divColour",BLACK)
+    return LINES[line_id].get("divColour",colour(line_id))
 
 # Make sure text is readable.
 def textColour(line_id):
