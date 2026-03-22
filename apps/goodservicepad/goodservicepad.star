@@ -220,7 +220,6 @@ def main(config):
                             height = 20,
                             width = 20,
                             child = render.Text(
-								offset = 0,
                                 content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
                                 color = text_color,
                                 height = 8,
