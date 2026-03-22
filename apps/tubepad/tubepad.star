@@ -78,6 +78,7 @@ LINES = {
         "display": "Northern",
         "colour": BLACK,
         "textColour": WHITE,
+		"divColour": WHITE,
     },
     "piccadilly": {
         "display": "Piccadilly",
@@ -332,6 +333,10 @@ def get_arrivals(stop_id, line_id, config):
 def colour(line_id):
     return LINES[line_id]["colour"]
 
+# The colour associated with each line is famous.
+def div_colour(line_id):
+    return LINES[line_id].get("divColour",BLACK)
+
 # Make sure text is readable.
 def textColour(line_id):
     return LINES[line_id]["textColour"]
@@ -433,7 +438,7 @@ def main(config):
 						),
                     ),
                 ),
-                render.Box(height = 1, width = 1),  # Spacing between box and text
+                render.Box(height = 1, width = 64, color = div_colour(line_id),  # Spacing between box and text
                 render_arrivals(arrivals),
             ],
         ),
