@@ -230,7 +230,7 @@ def main(config):
                                 render.Padding(
                                     pad = ROUTE_OFFSETS[content],
                                     child = render.Text(
-                                        font = "6x9",
+                                        font = "tb-9",
                                         content = content,
                                         color = text_color
                                     )
