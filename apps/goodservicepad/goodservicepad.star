@@ -214,12 +214,13 @@ def main(config):
                 else:
                     bullet = render.Circle(
                         color = route_color,
-                        diameter = 20,
+                        diameter = 11,
                         child = render.Box(
                             padding = 0,
-                            height = 20,
-                            width = 20,
+                            height = 11,
+                            width = 11,
                             child = render.Text(
+								padding = -2
                                 content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
                                 color = text_color,
                                 height = 8,
