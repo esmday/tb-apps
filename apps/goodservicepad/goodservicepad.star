@@ -231,15 +231,15 @@ def main(config):
                         children = [
                             # Background circle
                             render.Circle(
-                                color = "#00f", # Blue
-                                diameter = 11,
+                                color = route_color,
+                                diameter = 11
                             ),
                             # Text centered on top
                             render.Text(
-                                content = "Hi",
-                                color = "#fff", # White
-                            ),
-                        ],
+                                content = "H",
+                                color = text_color
+                            )
+                        ]
                     )
                 blocks.append(render.Padding(
                     pad = (0, 0, 0, 1),
