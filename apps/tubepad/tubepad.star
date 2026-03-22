@@ -78,7 +78,7 @@ LINES = {
         "display": "Northern",
         "colour": BLACK,
         "textColour": WHITE,
-		"divColour": "#333",
+		"divColour": WHITE,
     },
     "piccadilly": {
         "display": "Piccadilly",
@@ -335,7 +335,7 @@ def colour(line_id):
 
 # The colour associated with each line is famous.
 def div_colour(line_id):
-    return LINES[line_id].get("divColour",colour(line_id))
+    return LINES[line_id].get("divColour",BLACK)
 
 # Make sure text is readable.
 def textColour(line_id):
