@@ -92,7 +92,7 @@ LINES = {
     },
     "victoria": {
         "display": "Victoria",
-        "colour": "#00A0E2",
+        "colour": "#0098D4",
         "textColour": BLACK,
     },
     "waterloo-city": {
