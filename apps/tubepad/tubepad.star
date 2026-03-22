@@ -78,7 +78,7 @@ LINES = {
         "display": "Northern",
         "colour": BLACK,
         "textColour": WHITE,
-		"divColour": WHITE,
+		"divColour": "#333",
     },
     "piccadilly": {
         "display": "Piccadilly",
