@@ -422,7 +422,7 @@ def main(config):
                     color = colour(line_id),
                     child = render.Padding(
                         # Better wrapping for King's Cross St Pancras
-                        # pad = (1, 1, 1, 0),
+                        pad = (1, 0, 1, 0),
                         child = render.Marquee(
 							width = 62,
 							align = "center",
