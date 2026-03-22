@@ -239,11 +239,11 @@ def main(config):
                     else:
                         bullet = render.Circle(
                             color = route_color,
-                            diameter = 11,
+                            diameter = 10,
                             child = render.Box(
                                 padding = 1,
-                                height = 11,
-                                width = 11,
+                                height = 10,
+                                width = 10,
                                 child = render.Text(
                                     content = content,
                                     color = text_color,
