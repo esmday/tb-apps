@@ -214,7 +214,7 @@ def main(config):
                 else:
                     bullet = render.Circle(
                         color = route_color,
-                        diameter = 11,
+                        diameter = 20,
                         child = render.Box(
                             padding = 0,
                             height = 11,
