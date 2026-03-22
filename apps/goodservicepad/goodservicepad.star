@@ -216,7 +216,7 @@ def main(config):
                         color = route_color,
                         diameter = 11,
                         child = render.Box(
-                            padding = 0,
+                            padding = 2,
                             height = 11,
                             width = 11,
                             child = render.Text(
