@@ -20,7 +20,7 @@ HOLBORN_ID = "940GZZLUHBN"
 WHITE = "#FFF"
 BLACK = "#000"
 ORANGE = "#FFA500"
-FONT = "tb-8"
+FONT = "tom-thumb"
 
 MODES = ["tube", "elizabeth-line", "dlr", "overground", "tram"]
 LINES = {
@@ -352,21 +352,21 @@ def render_arrivals_frame(arrivals):
                 pad = (1, 0, 1, 0),
                 child = render.Row(
                     expanded = True,
-                    #main_align = "space_between",
+                    main_align = "space_between",
                     children = [
                         render.WrappedText(
                             content = arrival[0],
                             color = ORANGE,
                             font = FONT,
                             width = 44,
-                            height = 8,
+                            height = 6,
                         ),
                         render.WrappedText(
                             content = arrival[1],
                             color = ORANGE,
                             font = FONT,
                             width = 17,
-                            height = 8,
+                            height = 6,
                             align = "right",
                         ),
                     ],
