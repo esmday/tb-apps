@@ -435,7 +435,6 @@ def main(config):
 								content = station_name,
 								color = textColour(line_id),
 							),
-							delay = 10,
 						),
                     ),
                 ),
