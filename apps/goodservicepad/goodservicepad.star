@@ -212,20 +212,34 @@ def main(config):
                         ],
                     )
                 else:
-                    bullet = render.Circle(
-                        color = route_color,
-                        diameter = 11,
-                        child = render.Box(
-                            padding = 0,
-                            height = 11,
-                            width = 11,
-                            child = render.Text(
-								padding = 0,
-                                content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
-                                color = text_color,
-                                height = 8,
+                    # bullet = render.Circle(
+                        # color = route_color,
+                        # diameter = 11,
+                        # child = render.Box(
+                            # padding = 0,
+                            # height = 11,
+                            # width = 11,
+                            # child = render.Text(
+								# padding = 0,
+                                # content = selected_route["name"][0] if selected_route["name"] != "SIR" else "SI",
+                                # color = text_color,
+                                # height = 8,
+                            # ),
+                        # ),
+                    # )
+                    bullet = render.Stack(
+                        children = [
+                            # Background circle
+                            render.Circle(
+                                color = "#00f", # Blue
+                                diameter = 11,
                             ),
-                        ),
+                            # Text centered on top
+                            render.Text(
+                                content = "Hi",
+                                color = "#fff", # White
+                            ),
+                        ],
                     )
                 blocks.append(render.Padding(
                     pad = (0, 0, 0, 1),
