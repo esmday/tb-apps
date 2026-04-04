@@ -16,21 +16,20 @@ USER_AGENT = "SMS"
 
 # Get message
 def fetch_resp():
-#     resp = http.get(
-#         QUERY_URL,
-# #         params = {
-# #             "slug": 'doug'
-# #         },
-#         headers = {
-#             "User-Agent": USER_AGENT,
+    resp = http.get(
+        QUERY_URL,
+#         params = {
+#             "slug": 'doug'
 #         },
-#         ttl_seconds = 180,
-#     )
-    return 'Steve'
-#     if resp.status_code != 200:
-#         print("Message retrieval failed with status ", resp.status_code)
-#         return str(resp.status_code)
-#     return resp.text()
+        headers = {
+            "User-Agent": USER_AGENT,
+        },
+        ttl_seconds = 180,
+    )
+    if resp.status_code != 200:
+        print("Message retrieval failed with status ", resp.status_code)
+        return str(resp.status_code)
+    return resp.text()
 
 def main(config):
 
