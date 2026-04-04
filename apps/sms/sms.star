@@ -50,10 +50,10 @@ def main(config):
     return render.Root(
         child = render.Marquee(
             width = 64,
-            align = "center",
             height = 32,
             scroll_direction = "vertical",
             child = render.Column(
+                cross_align="center", # Horizontal center
                 children = blocks,
             ),
         ),
