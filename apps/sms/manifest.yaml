@@ -1,0 +1,12 @@
+---
+id: sms
+name: SMS
+summary: Send messages to Tidbyts
+desc: Send messages to Tidbyts
+author: esmday
+fileName: sms.star
+packageName: sms
+recommendedInterval: 5
+category: utilities
+tags:
+  - sms
