@@ -17,7 +17,7 @@ def main(config):
         max_age = 120,
         delay = 25,
         child = render.Padding(
-            pad = (12, 0, 0, 0),
+            pad = (0, 12, 0, 0),
             child = render.Marquee(
                 width = 64,
                 align = "center",
