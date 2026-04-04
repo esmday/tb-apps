@@ -11,16 +11,16 @@ load("math.star", "math")
 load("render.star", "render")
 load("schema.star", "schema")
 
-QUERY_URL = "https://860458.xyz/tidbyt/get.php"
+QUERY_URL = "https://860458.xyz/tidbyt/get.php?slug=doug"
 USER_AGENT = "SMS"
 
 # Get message
 def fetch():
     resp = http.get(
         QUERY_URL.format(slug='doug'),
-        params = {
-            "slug": 'doug'
-        },
+#         params = {
+#             "slug": 'doug'
+#         },
         headers = {
             "User-Agent": USER_AGENT,
         },
