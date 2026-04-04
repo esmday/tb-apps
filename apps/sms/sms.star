@@ -41,7 +41,7 @@ def main(config):
 
     for l in lines:
         blocks.append(
-            render.Text(l)
+            render.Text(l.strip())
         )
 
     return render.Root(
