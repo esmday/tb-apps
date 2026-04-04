@@ -24,7 +24,7 @@ def fetch_resp():
         headers = {
             "User-Agent": USER_AGENT,
         },
-        ttl_seconds = 180,
+        ttl_seconds = 60,
     )
     if resp.status_code != 200:
         print("Message retrieval failed with status ", resp.status_code)
