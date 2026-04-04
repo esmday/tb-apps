@@ -41,7 +41,11 @@ def main(config):
 
     for l in lines:
         blocks.append(
-            render.Text(l.strip())
+            render.WrappedText(
+                content=l.strip(),
+                width=64,
+                align="center",
+            )
         )
 
     if len(blocks) == 0:
@@ -53,7 +57,6 @@ def main(config):
             height = 32,
             scroll_direction = "vertical",
             child = render.Column(
-                width=64,
                 cross_align="center", # Horizontal center
                 children = blocks,
             ),
