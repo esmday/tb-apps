@@ -16,22 +16,25 @@ USER_AGENT = "SMS"
 
 # Get message
 def fetch_resp():
-    resp = http.get(
-        QUERY_URL,
-#         params = {
-#             "slug": 'doug'
+#     resp = http.get(
+#         QUERY_URL,
+# #         params = {
+# #             "slug": 'doug'
+# #         },
+#         headers = {
+#             "User-Agent": USER_AGENT,
 #         },
-        headers = {
-            "User-Agent": USER_AGENT,
-        },
-        ttl_seconds = 180,
-    )
-    if resp.status_code != 200:
-        print("Message retrieval failed with status ", resp.status_code)
-        return str(resp.status_code)
-    return resp.text()
+#         ttl_seconds = 180,
+#     )
+    return 'Steve'
+#     if resp.status_code != 200:
+#         print("Message retrieval failed with status ", resp.status_code)
+#         return str(resp.status_code)
+#     return resp.text()
 
 def main(config):
+
+    resp = fetch_resp()
 
     return render.Root(
         max_age = 120,
@@ -40,7 +43,7 @@ def main(config):
             width = 64,
             align = "center",
             child = render.Text(
-                content = fetch_resp()
+                content = resp
             ),
         )
     )
