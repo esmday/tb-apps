@@ -16,10 +16,7 @@ def main(config):
     return render.Root(
         max_age = 120,
         delay = 25,
-        child = render.Padding(
-            pad = (12, 0, 0, 0),
-            child = render.Text(
-                content = 'DOUG SUCKS'
-            )
+        child = render.Text(
+            content = 'DOUG SUCKS'
         )
     )
