@@ -36,6 +36,8 @@ def main(config):
 
     resp = fetch_resp()
 
+    lines = resp.splitlines()
+
     return render.Root(
         max_age = 120,
         delay = 25,
@@ -43,7 +45,7 @@ def main(config):
             width = 64,
             align = "center",
             child = render.Text(
-                content = resp
+                content = lines[0]
             ),
         )
     )
