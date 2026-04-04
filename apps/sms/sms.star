@@ -44,6 +44,9 @@ def main(config):
             render.Text(l.strip())
         )
 
+    if len(blocks) == 0:
+        return []
+
     return render.Root(
         child = render.Marquee(
             height = 32,
