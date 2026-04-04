@@ -53,6 +53,7 @@ def main(config):
             height = 32,
             scroll_direction = "vertical",
             child = render.Column(
+                width=64,
                 cross_align="center", # Horizontal center
                 children = blocks,
             ),
