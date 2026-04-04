@@ -30,8 +30,7 @@ def fetch_resp():
         print("Message retrieval failed with status ", resp.status_code)
         return str(resp.status_code)
     r = resp.body()
-    q = str(r)
-    return q
+    return r
 
 def main(config):
 
