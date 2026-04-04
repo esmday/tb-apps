@@ -39,7 +39,7 @@ def main(config):
             width = 64,
             align = "center",
             child = render.Text(
-                content = 'steve'
+                content = fetch()
             ),
         )
     )
