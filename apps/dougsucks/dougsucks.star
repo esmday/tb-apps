@@ -18,12 +18,8 @@ def main(config):
         delay = 25,
         child = render.Padding(
             pad = (12, 0, 0, 0),
-            child = render.Marquee(
-                width = 64,
-                align = "center",
-                child = render.Text(
-                    content = 'DOUG SUCKS'
-                )
+            child = render.Text(
+                content = 'DOUG SUCKS'
             )
         )
     )
