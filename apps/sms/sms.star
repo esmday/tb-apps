@@ -17,7 +17,7 @@ USER_AGENT = "SMS"
 # Get message
 def fetch():
     resp = http.get(
-        QUERY_URL.format(slug='doug'),
+        QUERY_URL,
 #         params = {
 #             "slug": 'doug'
 #         },
