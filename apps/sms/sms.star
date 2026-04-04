@@ -26,7 +26,6 @@ def fetch_resp():
         },
         ttl_seconds = 180,
     )
-    return 'Steve'
     if resp.status_code != 200:
         print("Message retrieval failed with status ", resp.status_code)
         return str(resp.status_code)
