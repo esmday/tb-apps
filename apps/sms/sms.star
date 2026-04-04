@@ -36,16 +36,21 @@ def main(config):
 
     resp = fetch_resp()
 
+    blocks = []
     lines = resp.splitlines()
 
-    return render.Root(
-        max_age = 120,
-        delay = 25,
-        child = render.Marquee(
-            width = 64,
-            align = "center",
-            child = render.Text(
-                content = lines[0]
-            ),
+    for l in lines:
+        blocks.append(
+            render.Text(l)
         )
+
+    return render.Root(
+        child = render.Marquee(
+            height = 32,
+            scroll_direction = "vertical",
+            child = render.Column(
+                children = blocks,
+            ),
+        ),
+        max_age = 60,
     )
