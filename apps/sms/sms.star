@@ -28,7 +28,8 @@ def fetch():
     )
     if resp.status_code != 200:
         print("Message retrieval failed with status ", resp.status_code)
-    return str(resp.content)
+        return str(resp.status_code)
+    return resp.text()
 
 def main(config):
 
