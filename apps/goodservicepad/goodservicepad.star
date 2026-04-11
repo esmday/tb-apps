@@ -263,7 +263,7 @@ def main(config):
                             ),
                             render.Column(
                                 children = [
-                                    render.Text(destination),
+                                    render.Text(destination.replace('0','O')),  # I hate the narrow zero
                                     render.Text(content = text, font = "tom-thumb", color = "#f2711c"),
                                 ],
                             ),
