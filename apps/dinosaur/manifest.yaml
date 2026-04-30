@@ -1,0 +1,14 @@
+---
+id: dinosaur
+name: Dinosaur Fact
+summary: A new dinosaur fact every day
+desc: Cycles through 500 dinosaur facts, showing a new one each day.
+author: smd
+fileName: dinosaur.star
+packageName: dinosaur
+recommendedInterval: 3600
+category: education
+tags:
+  - dinosaur
+  - facts
+  - education
