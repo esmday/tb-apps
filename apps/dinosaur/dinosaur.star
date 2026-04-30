@@ -516,32 +516,29 @@ def main(config):
     day_num = time.now().unix // 86400
     idx = day_num % len(FACTS)
     fact = FACTS[idx]
-    fact_num = idx + 1
 
     return render.Root(
         max_age = 3600,
-        delay = 80,
+        delay = 107,
         child = render.Column(
             children = [
                 render.Box(
-                    height = 7,
+                    height = 8,
                     width = 64,
                     color = "#1a472a",
                     child = render.Text(
-                        content = "DINO #" + str(fact_num),
-                        font = "tom-thumb",
+                        content = "DINOSAURS",
                         color = "#ffd700",
                     ),
                 ),
                 render.Marquee(
-                    height = 25,
+                    height = 24,
                     scroll_direction = "vertical",
-                    offset_start = 25,
-                    offset_end = 25,
+                    offset_start = 24,
+                    offset_end = 24,
                     child = render.WrappedText(
                         content = fact,
                         width = 64,
-                        font = "tom-thumb",
                         color = "#ffffff",
                     ),
                 ),
