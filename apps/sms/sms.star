@@ -79,22 +79,24 @@ def parse_segments(line):
         pos = close_idx + len("</font>")
     return segments
 
-def render_line(line):
+def line_blocks(line):
     segments = parse_segments(line)
     if len(segments) == 0:
-        return render.Text(content = " ")
-    if len(segments) == 1:
-        text, color = segments[0]
-        return render.WrappedText(
-            content = text,
+        return [render.Text(content = " ")]
+    blocks = []
+    for text, color in segments:
+        stripped = text.strip()
+        if stripped == "":
+            continue
+        blocks.append(render.WrappedText(
+            content = stripped,
             width = 64,
             align = "center",
             color = color,
-        )
-    children = []
-    for text, color in segments:
-        children.append(render.Text(content = text, color = color))
-    return render.Row(children = children)
+        ))
+    if len(blocks) == 0:
+        return [render.Text(content = " ")]
+    return blocks
 
 def main(config):
     resp = fetch_resp()
@@ -104,7 +106,8 @@ def main(config):
     blocks = []
     for l in lines:
         l = l.strip()
-        blocks.append(render_line(l))
+        for b in line_blocks(l):
+            blocks.append(b)
 
     if len(blocks) == 0:
         return []
