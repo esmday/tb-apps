@@ -28,6 +28,24 @@ def fetch_resp():
         return str(resp.status_code)
     return resp.body()
 
+ENTITIES = [
+    ("&nbsp;", " "),
+    ("&#160;", " "),
+    ("&#xa0;", " "),
+    ("&#xA0;", " "),
+    ("&lt;", "<"),
+    ("&gt;", ">"),
+    ("&quot;", "\""),
+    ("&apos;", "'"),
+    ("&#39;", "'"),
+    ("&amp;", "&"),
+]
+
+def decode_entities(s):
+    for ent, ch in ENTITIES:
+        s = s.replace(ent, ch)
+    return s
+
 def split_lines(s):
     for br in ["<br/>", "<br />", "<BR>", "<BR/>", "<BR />", "<Br>"]:
         s = s.replace(br, "<br>")
@@ -100,6 +118,7 @@ def line_blocks(line):
 
 def main(config):
     resp = fetch_resp()
+    resp = decode_entities(resp)
 
     lines = split_lines(resp)
 
