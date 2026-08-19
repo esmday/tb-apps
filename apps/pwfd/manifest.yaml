@@ -1,0 +1,15 @@
+---
+id: pwfd
+name: PWFD
+summary: Port Washington FD calls
+desc: Shows the time and call type of the most recent Port Washington Fire Department call, refreshed every two minutes.
+author: smd
+fileName: pwfd.star
+packageName: pwfd
+recommendedInterval: 120
+category: news
+tags:
+  - fire
+  - emergency
+  - scanner
+  - local
