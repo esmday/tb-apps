@@ -204,28 +204,49 @@ def wrap_words(words):
         rows.append(row)
     return rows
 
-def line_blocks(line):
-    rows = wrap_words(line_words(parse_segments(line)))
-    if len(rows) == 0:
-        return [render.Text(content = " ")]
-    return [
-        render.Row(
+LINE_HEIGHT = 8  # tb-8 ascent (7) + descent (1); the height pixlet gives each Text
+
+def row_block(row):
+    # A full-width box so each row is centered on the display, rather than
+    # within the widest row.
+    return render.Box(
+        width = DISPLAY_WIDTH,
+        height = LINE_HEIGHT,
+        child = render.Row(
             children = [render.Text(content = text, color = color) for text, color in row],
-        )
-        for row in rows
-    ]
+        ),
+    )
+
+def trim_blank_lines(line_rows):
+    # Drop empty lines at the start and end (e.g. from a trailing <br>) so they
+    # don't add height and make the message scroll. Blank lines in between stay.
+    start = 0
+    for rows in line_rows:
+        if len(rows) > 0:
+            break
+        start += 1
+    end = len(line_rows)
+    for rows in reversed(line_rows):
+        if len(rows) > 0:
+            break
+        end -= 1
+    return line_rows[start:end]
 
 def main(config):
     resp = fetch_resp()
     resp = decode_entities(resp)
 
-    lines = split_lines(resp)
+    line_rows = [
+        wrap_words(line_words(parse_segments(l.strip())))
+        for l in split_lines(resp)
+    ]
 
     blocks = []
-    for l in lines:
-        l = l.strip()
-        for b in line_blocks(l):
-            blocks.append(b)
+    for rows in trim_blank_lines(line_rows):
+        if len(rows) == 0:
+            blocks.append(render.Box(width = DISPLAY_WIDTH, height = LINE_HEIGHT))
+        for row in rows:
+            blocks.append(row_block(row))
 
     if len(blocks) == 0:
         return []
