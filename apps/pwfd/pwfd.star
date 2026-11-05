@@ -17,7 +17,7 @@ CALLS_URL = "https://calls.pwfd.com/website_full.asp"
 USER_AGENT = "Tidbyt PWFD"
 POLL_SECONDS = 120
 
-DEFAULT_TIMEZONE = "America/New_York"  # Port Washington, NY
+TIMEZONE = "America/New_York"  # Port Washington, NY; "today" is always NY time
 
 FLAME = FLAME_ASSET.readall()
 
@@ -161,8 +161,7 @@ def main(config):
     if not body:
         return message("Call data unavailable")
 
-    timezone = config.get("$tz", DEFAULT_TIMEZONE)
-    call = latest_call_today(parse_calls(body), time.now().in_location(timezone))
+    call = latest_call_today(parse_calls(body), time.now().in_location(TIMEZONE))
     if not call:
         return message("No calls today")
 
