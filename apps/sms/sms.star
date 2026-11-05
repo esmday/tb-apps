@@ -97,24 +97,123 @@ def parse_segments(line):
         pos = close_idx + len("</font>")
     return segments
 
-def line_blocks(line):
-    segments = parse_segments(line)
-    if len(segments) == 0:
-        return [render.Text(content = " ")]
-    blocks = []
+DISPLAY_WIDTH = 64
+
+# Advance widths (px) of the default tb-8 font for ASCII 32 (space) .. 126 (~),
+# taken from the DWIDTH entries in pixlet's fonts/tb-8.bdf. Pixlet has no text
+# measuring API, so wrapping is computed from these.
+TB8_WIDTHS = [
+    3, 2, 4, 5, 5, 5, 5, 2, 3, 3, 5, 4, 3, 4, 2, 5,  # space ! " # $ % & ' ( ) * + , - . /
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 2, 3, 4, 4, 4, 4,  # 0-9 : ; < = > ?
+    6, 5, 5, 5, 5, 5, 5, 5, 5, 4, 4, 5, 5, 6, 5, 5,  # @ A-O
+    5, 5, 5, 5, 4, 5, 6, 6, 5, 6, 5, 5, 5, 5, 4, 5,  # P-Z [ \ ] ^ _
+    3, 5, 5, 4, 5, 5, 5, 5, 5, 4, 4, 5, 4, 6, 5, 5,  # ` a-o
+    5, 5, 5, 4, 5, 5, 4, 6, 5, 5, 5, 5, 2, 5, 5,  # p-z { | } ~
+]
+FALLBACK_CHAR_WIDTH = 5
+SPACE_WIDTH = TB8_WIDTHS[0]
+
+def char_width(ch):
+    code = ord(ch)
+    if code >= 32 and code < 32 + len(TB8_WIDTHS):
+        return TB8_WIDTHS[code - 32]
+    return FALLBACK_CHAR_WIDTH
+
+def text_width(s):
+    w = 0
+    for ch in s.codepoints():
+        w += char_width(ch)
+    return w
+
+def add_piece(pieces, text, color):
+    # Append text to a list of [text, color] pieces, merging with the last
+    # piece when the color matches so each row needs as few Text widgets as possible.
+    if len(pieces) > 0 and pieces[-1][1] == color:
+        pieces[-1][0] += text
+    else:
+        pieces.append([text, color])
+
+def line_words(segments):
+    # Split colored segments into words. A word can span several colors
+    # (e.g. <font color="red">He</font>llo), so each word is a list of pieces.
+    words = []
+    current = []
     for text, color in segments:
-        stripped = text.strip()
-        if stripped == "":
+        for ch in text.codepoints():
+            if ch.isspace():
+                if len(current) > 0:
+                    words.append(current)
+                    current = []
+            else:
+                add_piece(current, ch, color)
+    if len(current) > 0:
+        words.append(current)
+    return words
+
+def pieces_width(pieces):
+    w = 0
+    for text, _ in pieces:
+        w += text_width(text)
+    return w
+
+def split_long_word(word):
+    # Break a word wider than the display into display-width chunks.
+    chunks = []
+    current = []
+    width = 0
+    for text, color in word:
+        for ch in text.codepoints():
+            cw = char_width(ch)
+            if width + cw > DISPLAY_WIDTH and len(current) > 0:
+                chunks.append(current)
+                current = []
+                width = 0
+            add_piece(current, ch, color)
+            width += cw
+    if len(current) > 0:
+        chunks.append(current)
+    return chunks
+
+def wrap_words(words):
+    # Greedy word wrap into rows that fit the display width.
+    rows = []
+    row = []
+    width = 0
+    for word in words:
+        word_width = pieces_width(word)
+        if word_width > DISPLAY_WIDTH:
+            if len(row) > 0:
+                rows.append(row)
+            chunks = split_long_word(word)
+            rows.extend(chunks[:-1])
+            row = chunks[-1]
+            width = pieces_width(row)
             continue
-        blocks.append(render.WrappedText(
-            content = stripped,
-            width = 64,
-            align = "center",
-            color = color,
-        ))
-    if len(blocks) == 0:
+        if len(row) > 0 and width + SPACE_WIDTH + word_width > DISPLAY_WIDTH:
+            rows.append(row)
+            row = []
+            width = 0
+        if len(row) > 0:
+            # The space between words takes the color of the preceding text.
+            add_piece(row, " ", row[-1][1])
+            width += SPACE_WIDTH
+        for text, color in word:
+            add_piece(row, text, color)
+        width += word_width
+    if len(row) > 0:
+        rows.append(row)
+    return rows
+
+def line_blocks(line):
+    rows = wrap_words(line_words(parse_segments(line)))
+    if len(rows) == 0:
         return [render.Text(content = " ")]
-    return blocks
+    return [
+        render.Row(
+            children = [render.Text(content = text, color = color) for text, color in row],
+        )
+        for row in rows
+    ]
 
 def main(config):
     resp = fetch_resp()
