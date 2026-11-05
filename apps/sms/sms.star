@@ -11,7 +11,7 @@ load("math.star", "math")
 load("render.star", "render")
 load("schema.star", "schema")
 
-QUERY_URL = "https://860458.xyz/tidbyt/get.php?slug=doug"
+QUERY_URL = "https://tidbyt.860458.xyz/apps/sms/get.php?slug=doug"
 USER_AGENT = "SMS"
 DEFAULT_COLOR = "#ffffff"
 
